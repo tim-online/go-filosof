@@ -45,6 +45,22 @@ func (l *Line) Validate() []error {
 
 	errs = append(errs, l.RecordCode.Validate()...)
 
+	if l.ValueDate.IsZero() {
+		errs = append(errs, errors.New("ValueDate is required"))
+	}
+
+	if l.DebitAccount == 0 {
+		errs = append(errs, errors.New("DebitAccount is required"))
+	}
+
+	if l.CreditAccount == 0 {
+		errs = append(errs, errors.New("CreditAccount is required"))
+	}
+
+	if l.PostingText {
+		errs = append(errs, errors.New("PostingText is required"))
+	}
+
 	return errs
 }
 
