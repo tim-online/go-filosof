@@ -57,7 +57,7 @@ func (l *Line) Validate() []error {
 		errs = append(errs, errors.New("CreditAccount is required"))
 	}
 
-	if l.PostingText {
+	if l.PostingText == "" {
 		errs = append(errs, errors.New("PostingText is required"))
 	}
 
