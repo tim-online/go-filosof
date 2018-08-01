@@ -172,6 +172,23 @@ func (l *Line) ToMap() map[string]string {
 	if m["ARNetDays"] == "0" {
 		m["ARNetDays"] = ""
 	}
+
+	if m["CostCenter"] == "0" {
+		m["CostCenter"] = ""
+	}
+
+	if m["CostObject"] == "0" {
+		m["CostObject"] = ""
+	}
+
+	if m["FCGrossAmount"] == "0.00" {
+		m["FCGrossAmount"] = ""
+	}
+
+	if m["FCVATAmount"] == "0.00" {
+		m["FCVATAmount"] = ""
+	}
+
 	return m
 }
 
