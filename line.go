@@ -141,19 +141,19 @@ func (l *Line) ToStrings() []string {
 func (l *Line) ToMap() map[string]string {
 	m := map[string]string{
 		"RecordCode":      string(l.RecordCode),
-		"InvoiceDate":     l.InvoiceDate.String(),
-		"ValueDate":       l.ValueDate.String(),
+		"InvoiceDate":     fmt.Sprint(l.InvoiceDate),
+		"ValueDate":       fmt.Sprint(l.ValueDate),
 		"DebitAccount":    strconv.Itoa(l.DebitAccount),
 		"CreditAccount":   strconv.Itoa(l.CreditAccount),
 		"CostCenter":      strconv.Itoa(l.CostCenter),
 		"CostObject":      strconv.Itoa(l.CostObject),
 		"InvoiceNumber":   l.InvoiceNumber,
 		"ReferenceNumber": l.ReferenceNumber,
-		"GrossAmount":     l.GrossAmount.String(),
+		"GrossAmount":     fmt.Sprint(l.GrossAmount),
 		"FCCode":          string(l.FCCode),
 		"FCGrossAmount":   fmt.Sprint(l.FCGrossAmount),
-		"VATAmount":       l.VATAmount.String(),
-		"FCVATAmount":     l.FCVATAmount.String(),
+		"VATAmount":       fmt.Sprint(l.VATAmount),
+		"FCVATAmount":     fmt.Sprint(l.FCVATAmount),
 		"PostingText":     l.PostingText,
 		"ARTitle":         l.ARTitle,
 		"ARName1":         l.ARName1,
@@ -226,7 +226,7 @@ func (d *Date) UnmarshalJSON(data []byte) error {
 	return err
 }
 
-func (d *Date) string() string {
+func (d Date) String() string {
 	return d.Format("02.01.2006")
 }
 
