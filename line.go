@@ -243,6 +243,11 @@ func (rc *RecordCode) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (rc RecordCode) MarshalJSON() ([]byte, error) {
+	s := string(rc)
+	return json.Marshal(s)
+}
+
 func (rc RecordCode) Validate() []error {
 	var errs []error
 
