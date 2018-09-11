@@ -21,9 +21,10 @@ type Line struct {
 	ReferenceNumber string
 	GrossAmount     Amount // accounting currency
 	FCCode          Currency
-	FCGrossAmount   Amount // foreign currency
-	VATAmount       Amount // accounting currency
-	FCVATAmount     Amount // foreign currency
+	// FCGrossAmount   Amount // foreign currency
+	FCGrossAmount   Percentage // ??
+	VATAmount       Amount     // accounting currency
+	FCVATAmount     Amount     // foreign currency
 	PostingText     string
 	ARTitle         string
 	ARName1         string
@@ -150,7 +151,7 @@ func (l *Line) ToMap() map[string]string {
 		"ReferenceNumber": l.ReferenceNumber,
 		"GrossAmount":     l.GrossAmount.String(),
 		"FCCode":          string(l.FCCode),
-		"FCGrossAmount":   l.FCGrossAmount.String(),
+		"FCGrossAmount":   fmt.Sprint(l.FCGrossAmount),
 		"VATAmount":       l.VATAmount.String(),
 		"FCVATAmount":     l.FCVATAmount.String(),
 		"PostingText":     l.PostingText,
@@ -258,6 +259,16 @@ func (a Amount) String() string {
 	// s := strconv.FormatFloat(float64(a), 'f', 2, 64)
 	s := fmt.Sprintf("%.2f", a)
 	s = strings.Replace(s, ".", ",", -1)
+	return s
+}
+
+type Percentage float64
+
+func (p Percentage) String() string {
+	// s := strconv.FormatFloat(float64(a), 'f', 2, 64)
+	s := fmt.Sprintf("%.2f", p*100)
+	s = strings.Replace(s, ".", ",", -1)
+	s = s + "%"
 	return s
 }
 
