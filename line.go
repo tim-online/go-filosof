@@ -197,8 +197,8 @@ type Date struct {
 }
 
 func (d Date) MarshalJSON() ([]byte, error) {
-	// YYYYMMDD format
-	return json.Marshal(d.Time.Format("20060102"))
+	// DD.MM.YYYY format
+	return json.Marshal(d.Time.Format("02.01.2006"))
 }
 
 func (d *Date) UnmarshalJSON(data []byte) error {
@@ -213,7 +213,7 @@ func (d *Date) UnmarshalJSON(data []byte) error {
 	}
 
 	// first try parsing filosof format
-	d.Time, err = time.Parse("20060102", value)
+	d.Time, err = time.Parse("02.01.2006", value)
 	if err == nil {
 		return err
 	}
@@ -223,8 +223,8 @@ func (d *Date) UnmarshalJSON(data []byte) error {
 	return err
 }
 
-func (d *Date) String() string {
-	return d.Format("20060102")
+func (d *Date) string() string {
+	return d.Format("02.01.2006")
 }
 
 type RecordCode rune
