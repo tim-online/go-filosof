@@ -3,7 +3,9 @@ package filosof
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -253,7 +255,10 @@ func (rc RecordCode) Validate() []error {
 type Amount float64
 
 func (a Amount) String() string {
-	return strconv.FormatFloat(float64(a), 'f', 2, 64)
+	// s := strconv.FormatFloat(float64(a), 'f', 2, 64)
+	s := fmt.Sprintf("%.2f", a)
+	s = strings.Replace(s, ".", ",", -1)
+	return s
 }
 
 type Currency string
